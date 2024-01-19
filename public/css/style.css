@@ -1,0 +1,296 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root{
+  --font-poppins : 'Poppins', sans-serif;
+  --color-primary : #fff;
+  --color-border : #001d57;
+  --color-main: #282c34;
+}
+
+body{
+  height: 100vh;
+  width: 100%;
+  background-color: var(--color-main) !important;
+}
+
+a, a.btn-type{
+  text-decoration: none !important;
+}
+
+.App{
+  min-height: 100vh;
+  width: 100%;
+}
+
+.main{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.wrapper {
+  height: 700px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 50px;
+}
+
+.wrapper-login {
+  height: 700px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 50px;
+}
+
+
+.wrapper-text{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  margin-bottom: 45px;
+}
+
+.wrapper-title{
+  font-size: 5rem;
+  font-family: var(--font-poppins);
+  font-weight: 600;
+}
+
+.wrapper-subtitle{
+  font-size: 1.5rem;
+  font-family: var(--font-poppins);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.select-section{
+  height: 400px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+  flex-wrap: wrap;
+}
+
+.select-item{
+  height: 300px;
+  width: 300px;
+  background-color: #00a8ff;
+  border-end-end-radius: 100px;
+  border-start-start-radius: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: .7s ;
+  text-decoration: none;
+}
+
+
+
+.select-item:hover{
+  transform: scale(1.1);
+  border-radius: 100px;
+  box-shadow: 0 0 25px #00ccff;
+  transform: translateY(-20px);
+}
+
+
+
+.select-item .select-item-text{
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  font-family: var(--font-poppins);
+  text-align: center;
+  transition:  all 0.7s ease;
+  }
+
+.select-item a.user-type i {
+    display: inline;
+    font-size: 150px;
+  color: white;
+  transition: all 0.5s ease;
+}
+
+.select-item:hover a.user-type i{
+    color: black;
+  }
+
+  .select-item:hover .select-item-text{
+    color: black;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .select-item {
+      height: 200px;
+      width: 250px;
+      padding: 15px;
+    }
+
+    .select-item a.user-type i {
+      display: inline;
+      font-size: 100px;
+      transition: all 0.7s ease;
+    }
+
+    .wrapper-title{
+        font-size: 3rem;
+    }
+    .wrapper-subtitle{
+        font-size: 1.3rem;
+    }
+  }
+
+footer{
+  height:60px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: var(--color-primary);
+  font-family: var(--font-poppins);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+footer p{
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+a.social i{
+  color: rgb(136, 136, 136);
+  transition: all 0.3s ease;
+  font-size: 25px;
+  margin: 0 5px;
+}
+a.social i:hover{
+  color: white;
+}
+
+
+/* Stajyer Login CSS */
+.form-login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    height: 100%;
+  }
+
+  .form-group input,
+  .form-group select  {
+    width: 100%;
+    height: 50px;
+    border: solid 2px #7e7e7e8f;
+    outline: none;
+    padding: 0 20px;
+    font-size: 1.2rem;
+    font-family: var(--font-poppins);
+    font-weight: 600;
+    color: var(--color-primary);
+    background-color: transparent;
+  }
+
+  .form-group input:checked,
+  .form-group input:focus,
+  .form-group select:focus {
+    border: solid 2px white;
+  }
+
+  .form-group input::placeholder,
+  .form-group select::placeholder {
+    font-size: 1.2rem;
+    font-family: var(--font-poppins);
+    font-weight: 600;
+    color: #9c9c9c;
+  }
+  .form-login a{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+
+  .form-login a.btn-type, .btn-type{
+    width: 100%;
+    height: 50px;
+    border: none;
+    outline: none;
+    font-size: 1.2rem;
+    font-family: var(--font-poppins);
+    font-weight: 600;
+    color: var(--color-primary);
+    background-color: #5400db;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+.form-login a:hover, .btn-type:hover{
+    background-color: #4000a7;
+}
+
+.form-title {
+    font-size: 1.5rem;
+    font-family: var(--font-poppins);
+    font-weight: 600;
+}
+
+
+  /* Style for the select dropdown options */
+  .form-group select {
+    width: 300px;
+    font-size: 1.2rem;
+    font-family: var(--font-poppins);
+    font-weight: 600;
+    color: white; /* Adjust the color as needed */
+  }
+
+  .form-group select option {
+    color: black;
+  }
+
+  .question-btn {
+    position: fixed;
+    bottom: 25px;
+    left: 20px;
+    cursor: pointer;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    font-size: 40px;
+    transition: background-color 0.3s ease;
+}
+
+.question-btn:hover i{
+    color: #00ccff;
+
+}
+
+.modal-header{
+    background-color: #00a8ff;
+    color: white;
+}

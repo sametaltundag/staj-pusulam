@@ -22,7 +22,7 @@
                 <div class="wrapper-text" >
                     <h1 class='wrapper-title'><span style="color: #00a8ff">Staj</span>Pusulam <i class="fa-regular fa-compass"></i></h1>
 
-                    <h2 class='wrapper-subtitle'>Sana uygun olanı bul, başvur, çalış!</h2>
+                    <h2 class='wrapper-subtitle'>Sana uygun olanı <span style="color: #00a8ff">bul, başvur, çalış!</span></h2>
                 </div>
 
                 <div class="select-section">
@@ -33,7 +33,7 @@
                         </a>
                     </div>
                     <div class="select-item">
-                        <a href="/" class="user-type">
+                        <a href="{{route('stajveren-login')}}" class="user-type">
                             <i class="fa-solid fa-people-arrows"></i>
                         <p class='select-item-text'>Staj Veren</p>
                         </a>
@@ -85,7 +85,7 @@
           </div>
         </div>
       </div>
-    <footer>
+    <footer style="position: fixed; bottom: 0; width: 100%; ">
         <div class="mb-2">
             <a href="https://github.com/sametaltundag" class='mx-2 social' target="_blank">
                 <i class="fa-brands fa-linkedin"></i>

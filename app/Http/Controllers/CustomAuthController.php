@@ -16,7 +16,7 @@ class CustomAuthController extends Controller
             'password' => 'required'
         ]);
 
-        $user = User::where('email', $request->email)->first();
+        $user = User::where('email', $request->email)->where('status', '1')->first();
 
         if ($user) {
             $credentials = $request->only('email', 'password');
@@ -31,6 +31,7 @@ class CustomAuthController extends Controller
         }
     }
 
+    
     public function register(Request $request){
         $validator = Validator::make($request->all(), [
             'name' => 'required|min:9',

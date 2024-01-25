@@ -41,7 +41,7 @@
         </div>
     </div>
 
-    <footer>
+    <<footer style="position: fixed; bottom: 0; width: 100%; ">
         <div class="mb-2">
             <a href="https://github.com/sametaltundag" class='mx-2 social' target="_blank">
                 <i class="fa-brands fa-linkedin"></i>
@@ -50,7 +50,7 @@
                 <i class="fa-brands fa-github"></i>
             </a>
         </div>
-      <p class='text-center'>Samet ALTUNDAĞ &copy; {{date('Y')}}</p>
+      <p class='text-center'><code style="color: #00a8ff">Developed by</code> Samet ALTUNDAĞ &copy; {{date('Y')}}</p>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -88,6 +88,30 @@
         progressBar: true,
         iconClass: 'toast-warning-icon',
         toastClass: 'toast-warning'
+    })
+    </script>
+    @endif
+
+    @if (session('logout'))
+    <script>
+    toastr.error('{{ session("logout") }}', `Başarılı!`, {
+        timeOut: 3000,
+        closeButton: true,
+        progressBar: true,
+        iconClass: 'toast-success-icon',
+        toastClass: 'toast-success'
+    })
+    </script>
+    @endif
+
+    @if (session('created'))
+    <script>
+    toastr.success('{{ session("created") }}', `Tebrikler!`, {
+        timeOut: 5000,
+        closeButton: true,
+        progressBar: true,
+        iconClass: 'toast-success-icon',
+        toastClass: 'toast-success'
     })
     </script>
     @endif

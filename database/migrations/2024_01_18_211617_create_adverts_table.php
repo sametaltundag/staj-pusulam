@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('subdescription')->nullable();
             $table->string('price')->nullable();
             $table->string('city')->nullable();
-            $table->integer('employer_id')->nullable();
+            $table->foreignId('employers_id')->constrained();
             $table->enum('status', ['1', '0'])->default(1);
             $table->timestamps();
         });

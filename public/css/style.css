@@ -28,6 +28,11 @@ a, a.btn-type{
   width: 100%;
 }
 
+.dashboard{
+    background-color: white;
+    min-height: 90.5vh;
+}
+
 .main{
   width: 100%;
   display: flex;
@@ -168,9 +173,7 @@ footer{
   flex-direction: column;
   color: var(--color-primary);
   font-family: var(--font-poppins);
-  position: absolute;
-  bottom: 0;
-  left: 0;
+
 }
 
 footer p{
@@ -258,7 +261,6 @@ a.social i:hover{
     font-weight: 600;
 }
 
-
   /* Style for the select dropdown options */
   .form-group select {
     width: 300px;
@@ -293,4 +295,103 @@ a.social i:hover{
 .modal-header{
     background-color: #00a8ff;
     color: white;
+}
+
+/* Profil Bilgileri CSS */
+
+.form-profile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    height: 100%;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea  {
+    width: 100%;
+    height: 50px;
+    border: solid 2px #7e7e7e8f;
+    outline: none;
+    padding: 0 20px;
+    font-size: 1.2rem;
+    font-family: var(--font-poppins);
+    font-weight: 600;
+    color: var(--color-primary);
+    background-color: transparent;
+  }
+
+  .form-group input:checked,
+  .form-group input:focus,
+  .form-group select:focus {
+    border: solid 2px white;
+  }
+
+  .form-group input::placeholder,
+  .form-group select::placeholder {
+    font-size: 1.2rem;
+    font-family: var(--font-poppins);
+    font-weight: 600;
+    color: #9c9c9c;
+  }
+  .form-profile a{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+
+  .form-profile a.btn-type, .btn-type{
+    width: 100%;
+    height: 50px;
+    border: none;
+    outline: none;
+    font-size: 1.2rem;
+    font-family: var(--font-poppins);
+    font-weight: 600;
+    color: var(--color-primary);
+    background-color: #5400db;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+.form-profile a:hover, .btn-type:hover{
+    background-color: #4000a7;
+}
+
+.form-title {
+    font-size: 1.5rem;
+    font-family: var(--font-poppins);
+    font-weight: 600;
+}
+
+
+  /* Style for the select dropdown options */
+  .form-group select {
+    width: 300px;
+    font-size: 1.2rem;
+    font-family: var(--font-poppins);
+    font-weight: 600;
+    color: white; /* Adjust the color as needed */
+  }
+
+  .form-group select option {
+    color: black;
+  }
+
+.item-nav
+{
+    font-size: 20px;
+    border-top: 1px solid #7e7e7e8f;
+    padding:5px 5px;
+    transition: all 0.2s ease-in-out;
+    border-radius: 5px;
+}
+
+.item-nav:hover{
+    background-color: #3c3f42;
 }

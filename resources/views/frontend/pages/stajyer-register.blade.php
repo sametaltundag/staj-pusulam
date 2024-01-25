@@ -12,19 +12,23 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css')}}/style.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"/>
+
 
 </head>
 <body>
     <div class="App">
         <div class='main'>
             <div class="wrapper-login">
-                <form action="" onSubmit={formik.handleSubmit}>
+                <form action="{{route('register')}}" method="POST">
+                    @csrf
                     <h1 style="color: white;text-align: center" class="form-title">Pusulam'a Gel - Stajını Bul</h1>
                     <div class="form-login">
                         <div class="form-group">
                             <input
                                 type="text"
                                 name='name'
+                                minlength="5"
                                 required
                                 placeholder='Tam Adınız'
                             />
@@ -34,6 +38,7 @@
                             <input
                                 type="email"
                                 name='email'
+                                minlength="8"
                                 required
                                 placeholder='E-Posta'
                             />
@@ -74,8 +79,8 @@
 
                         <div class="form-group">
                             <select name="gender" >
-                                <option value="0">Kadın</option>
-                                <option value="1">Erkek</option>
+                                <option value="K">Kadın</option>
+                                <option value="E">Erkek</option>
                             </select>
                         </div>
 
@@ -87,7 +92,7 @@
         </div>
     </div>
 
-    <footer>
+    <footer style="position: fixed; bottom: 0; width: 100%; ">
         <div class="mb-2">
             <a href="https://github.com/sametaltundag" class='mx-2 social' target="_blank">
                 <i class="fa-brands fa-linkedin"></i>
@@ -96,11 +101,28 @@
                 <i class="fa-brands fa-github"></i>
             </a>
         </div>
-      <p class='text-center'>Samet ALTUNDAĞ &copy; {{date('Y')}}</p>
+      <p class='text-center'><code style="color: #00a8ff">Developed by</code> Samet ALTUNDAĞ &copy; {{date('Y')}}</p>
     </footer>
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    @if ($errors->any())
     <script>
-        const submitButton = document.querySelector('button[type="submit"]');
+    @foreach ($errors->all() as $error)
+    toastr.error('{{ $error }}', 'Hata', {
+        timeOut: 6000,
+        closeButton: true,
+        progressBar: true,
+        iconClass: 'toast-warning-icon',
+        toastClass: 'toast-warning'
+    })
+    @endforeach
+    </script>
+@endif
+
+    <script>
+const submitButton = document.querySelector('button[type="submit"]');
 const phoneInput = document.getElementsByName('phone')[0];
 const passwordInput = document.getElementById('password');
 const password2Input = document.getElementById('password2');
@@ -156,7 +178,6 @@ function validateButton() {
     // Butonun stilini değiştir
     submitButton.style.opacity = submitButton.disabled ? 0.5 : 1;
 }
-
     </script>
 </body>
 </html>

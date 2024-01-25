@@ -18,8 +18,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('city')->nullable();
-            $table->string('phone');
-            $table->integer('age')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('age')->nullable();
             $table->string('address')->nullable();
             $table->string('photo')->nullable();
             $table->longText('about')->nullable();
@@ -29,6 +29,8 @@ return new class extends Migration
             $table->string('university_dep')->nullable();
             $table->string('degree')->nullable();
             $table->integer('job_id')->nullable();
+            $table->enum('role', ['user', 'employer', 'admin'])->default('user');
+            $table->integer('empcode')->nullable()->default(null);
             $table->rememberToken();
             $table->timestamps();
         });

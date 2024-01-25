@@ -31,7 +31,7 @@ class CustomAuthController extends Controller
         }
     }
 
-    
+
     public function register(Request $request){
         $validator = Validator::make($request->all(), [
             'name' => 'required|min:9',
@@ -77,7 +77,7 @@ class CustomAuthController extends Controller
     public function logout(){
         if(Auth::check()){
             Auth::logout();
-            return redirect()->route('stajyer-login')->with('logout', 'Güvenli çıkış yapıldı.');
+            return redirect()->route('dashboard')->with('logout', 'Güvenli çıkış yapıldı.');
         } else {
             return redirect()->route('home');
         }

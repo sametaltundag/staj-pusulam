@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Advert;
+use App\Models\Appeal;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -65,11 +67,35 @@ class EmployerControler extends Controller
 
     public function index(){
         $employer = Auth::user();
-        return view('frontend.pages.employer-dash',compact('employer'));
+        $adverts= Advert::where('users_id', Auth::id())->get();
+        return view('frontend.pages.employer-dash',compact('employer','adverts'));
     }
 
     public function profile(){
         $employer = Auth::user();
-        return view('frontend.pages.profile-employer',compact('employer'));
+        $advertCount = Advert::where('users_id', Auth::id())->count();
+        return view('frontend.pages.profile-employer',compact('employer','advertCount'));
+    }
+
+    public function advertadd(Request $req){
+
+        if(Auth::user()->job_id == null){
+            return redirect()->route('employer.index')->with(['jobNull' => 'İlan oluşturabilmek için profil bölümünden kategori seçin.']);
+        }
+
+        $created = Advert::create([
+            'title' => $req->title,
+            'job_id' => Auth::user()->job_id,
+            'description' => $req->description,
+            'price' => $req->price,
+            'users_id' => Auth::id(),
+            'city' => $req->city,
+        ]);
+
+        if($created){
+            return redirect()->route('employer.index')->with(['success' => 'İlan olusturuldu!']);
+        } else {
+            return redirect()->route('employer.index')->with(['error' => 'İlan olusturulamadı!']);
+        }
     }
 }

@@ -98,4 +98,19 @@ class EmployerControler extends Controller
             return redirect()->route('employer.index')->with(['error' => 'İlan olusturulamadı!']);
         }
     }
+
+    public function deleteAdvert($id){
+
+        $advert = Advert::find($id);
+        if($advert){
+            $delete = $advert->delete();
+            if($delete){
+                return redirect()->route('employer.index')->with(['deleted' => 'İlan silindi!']);
+            } else {
+                return redirect()->route('employer.index')->with(['error' => 'İlan silinemedi!']);
+            }
+        } else {
+            return redirect()->route('employer.index')->with(['notFound' => 'İlan bulunamadı!']);
+        }
+    }
 }

@@ -67,14 +67,14 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="staticBackdropLabel">İlan Seç</h1>
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">İlanlarım ({{count($adverts)}}) </h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <table class="table">
                     <thead>
                       <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">NO</th>
                         <th scope="col" style="width: 25%;">Başlık</th>
                         <th scope="col">Başvuru</th>
                         <th scope="col">Tarih</th>
@@ -82,48 +82,23 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Yazılım Uzmanı</td>
-                        <td>314 Kişi</td>
-                        <td>26.02.2024</td>
+                        @foreach ($adverts as $advert)
+                        @php
+                        // Her ilana göre, ilana başvuru sayısını döndürür.
+                        $appealCount = App\Models\Appeal::where('adverts_id', $advert->id)->count();
+                        @endphp
+                        <tr>
+                        <th scope="row">{{ $advert->id }}</th>
+                        <td>{{$advert->title }}</td>
+                        <td>{{$appealCount}}</td>
+                        <td>{{ date('d-m-Y', strtotime($advert->created_at)) }}</td>
                         <td>
                             <a href="" class="btn btn-sm text-white" style="background-color: #00a8ff">Gör <i class="far fa-eye"></i></a>
-                            <a href="" class="btn btn-sm text-white bg-danger" onclick="return confirm('{{ 'Yazılımcı adayı' }} adlı ilanı silmek istediğinizden emin misiniz?')">Sil <i class="fas fa-trash-alt"></i></a>
+                            <a href="{{route('advert.delete', $advert->id)}}" class="btn btn-sm text-white bg-danger" onclick="return confirm('{{ $advert->title }} adlı ilanı silmek istediğinizden emin misiniz?')">Sil <i class="fas fa-trash-alt"></i></a>
                         </td>
                       </tr>
+                        @endforeach
 
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Yazılım Uzmanı</td>
-                        <td>314 Kişi</td>
-                        <td>26.02.2024</td>
-                        <td>
-                            <a href="" class="btn btn-sm text-white" style="background-color: #00a8ff">Gör <i class="far fa-eye"></i></a>
-                            <a href="" class="btn btn-sm text-white bg-danger" onclick="return confirm('{{ 'Yazılımcı adayı' }} adlı ilanı silmek istediğinizden emin misiniz?')">Sil <i class="fas fa-trash-alt"></i></a>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Yazılım Uzmanı</td>
-                        <td>314 Kişi</td>
-                        <td>26.02.2024</td>
-                        <td>
-                            <a href="" class="btn btn-sm text-white" style="background-color: #00a8ff">Gör <i class="far fa-eye"></i></a>
-                            <a href="" class="btn btn-sm text-white bg-danger" onclick="return confirm('{{ 'Yazılımcı adayı' }} adlı ilanı silmek istediğinizden emin misiniz?')">Sil <i class="fas fa-trash-alt"></i></a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Yazılım Uzmanı</td>
-                        <td>314 Kişi</td>
-                        <td>26.02.2024</td>
-                        <td>
-                            <a href="" class="btn btn-sm text-white" style="background-color: #00a8ff">Gör <i class="far fa-eye"></i></a>
-                            <a href="" class="btn btn-sm text-white bg-danger" onclick="return confirm('{{ 'Yazılımcı adayı' }} adlı ilanı silmek istediğinizden emin misiniz?')">Sil <i class="fas fa-trash-alt"></i></a>
-                        </td>
-                      </tr>
                     </tbody>
                   </table>
             </div>
@@ -144,15 +119,16 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form method="POST" action="{{route('advert.add')}}">
+              <form method="POST" action="{{route('employer.advertadd')}}">
+                @csrf
                 <div class="mb-3">
                   <label for="recipient-name" class="col-form-label">İlan Başlığı</label>
-                  <input type="text" class="form-control" id="recipient-name">
+                  <input type="text" required name="title" class="form-control" id="recipient-name">
                 </div>
 
                 <div class="mb-3">
                     <label for="recipient-name" class="col-form-label">İlan Kategorisi (Profilden otomatik seçilir)</label>
-                    <select name="city" class="form-select" disabled>
+                    <select name="job_id" class="form-select" disabled>
                         @foreach([
                             0 => 'Seç',
                             1 => 'Bilişim',
@@ -173,11 +149,11 @@
 
                 <div class="mb-3">
                   <label for="message-text" class="col-form-label">Açıklama:</label>
-                  <textarea class="form-control" id="message-text"></textarea>
+                  <textarea class="form-control" name="description" id="message-text"></textarea>
                 </div>
                 <div class="mb-3">
                     <label for="recipient-name" class="col-form-label">Maaş Aralığı</label>
-                    <input type="text" class="form-control" id="recipient-name" placeholder="30.000 TL - 35.000 TL (Boş geçilebilir)">
+                    <input type="text" name="price" class="form-control" id="recipient-name" placeholder="30.000 TL - 35.000 TL (Boş geçilebilir)">
                 </div>
 
                 <div class="mb-3">
@@ -228,5 +204,77 @@
             });
     }
 </script>
+
+@if (session('jobNull'))
+        <script>
+            toastr.error('{{ session('jobNull') }}', `ENGELLENDİ!!!`, {
+                timeOut: 5000,
+                closeButton: true,
+                progressBar: true,
+                iconClass: 'toast-error-icon',
+                toastClass: 'toast-error'
+            });
+        </script>
+@endif
+
+@if (session('success'))
+        <script>
+            toastr.success('{{ session('success') }}', `İşlem başarılı!`, {
+                timeOut: 5000,
+                closeButton: true,
+                progressBar: true,
+                iconClass: 'toast-success-icon',
+                toastClass: 'toast-success'
+            });
+        </script>
+@endif
+
+@if (session('error'))
+        <script>
+            toastr.error('{{ session('error') }}', `İlan oluşturulamadı!`, {
+                timeOut: 5000,
+                closeButton: true,
+                progressBar: true,
+                iconClass: 'toast-error-icon',
+                toastClass: 'toast-error'
+            });
+        </script>
+@endif
+
+@if (session('deleted'))
+        <script>
+            toastr.success('{{ session('deleted') }}', `İşlem tamamlandı!`, {
+                timeOut: 3000,
+                closeButton: true,
+                progressBar: true,
+                iconClass: 'toast-success-icon',
+                toastClass: 'toast-success'
+            });
+        </script>
+@endif
+
+@if (session('error'))
+        <script>
+            toastr.error('{{ session('error') }}', `İlan oluşturulamadı!`, {
+                timeOut: 3000,
+                closeButton: true,
+                progressBar: true,
+                iconClass: 'toast-error-icon',
+                toastClass: 'toast-error'
+            });
+        </script>
+@endif
+
+@if (session('error'))
+        <script>
+            toastr.error('{{ session('error') }}', `İlan oluşturulamadı!`, {
+                timeOut: 3000,
+                closeButton: true,
+                progressBar: true,
+                iconClass: 'toast-error-icon',
+                toastClass: 'toast-error'
+            });
+        </script>
+@endif
 </body>
 </html>

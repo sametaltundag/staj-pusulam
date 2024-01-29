@@ -11,13 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('appeals', function (Blueprint $table) {
+        Schema::create('employers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email');
+            $table->string('email')->nullable();
+            $table->string('password');
             $table->string('phone')->nullable();
-            $table->foreignId('users_id')->constrained()->onDelete('cascade');
-            $table->foreignId('adverts_id')->constrained()->onDelete('cascade');
+            $table->string('city')->nullable();
+            $table->string('address')->nullable();
+            $table->string('description')->nullable();
+            $table->enum('status', ['1', '0'])->default('1');
+            $table->string('image')->nullable();
+            $table->integer('empcode');
             $table->timestamps();
         });
     }
@@ -27,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('appeals');
+        Schema::dropIfExists('employers');
     }
 };

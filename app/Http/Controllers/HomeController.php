@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Advert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,6 +32,8 @@ class HomeController extends Controller
     }
 
     public function adverts(){
-        return view('frontend.pages.adverts');
+        $adverts = Advert::orderBy('id', 'DESC')->paginate(4);
+        $lastAdverts = Advert::orderBy('id', 'DESC')->limit(5)->get();
+        return view('frontend.pages.adverts',compact('adverts','lastAdverts'));
     }
 }

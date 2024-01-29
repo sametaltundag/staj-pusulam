@@ -1,7 +1,7 @@
 @extends('frontend.layouts.app')
 
 @section('title')
-    İlanlar
+    Başvurularım
 @endsection
 
 @section('customcss')

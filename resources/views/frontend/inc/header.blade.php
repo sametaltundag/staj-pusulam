@@ -15,7 +15,7 @@
                 <h5 class="offcanvas-title" id="offcanvasNavbarDarkLabel">
                 <img src="{{ Auth::user()->photo ? asset("images/{$roleFolder}/" . Auth::user()->photo) : asset("images/{$roleFolder}/user.png") }}"
                      class="mx-2"
-                     style="height: 50px; width: 50px; object-fit: cover; object-position: center; border-radius: 50%">
+                     style="height: 50px; width: 50px; object-fit: contain; object-position: center; border-radius: 50%">
                 {{ Auth::user()->name }} <i class="fas fa-code"></i>
                 </h5>
                 <button type="button" style="border: none; outline: none" class="btn-close btn-close-white"
@@ -28,7 +28,7 @@
                         <a class="nav-link" aria-current="page" href="{{ route('dashboard') }}"><i class="fas fa-home"></i> Anasayfa</a>
                     </li>
                     <li class="nav-item item-nav"><a class="nav-link" href="{{ route('profile') }}"><i class="far fa-user-circle"></i> Profilim</a></li>
-                    <li class="nav-item item-nav"><a class="nav-link" href="#"><i class="fas fa-tasks"></i> Başvurularım</a></li>
+                    <li class="nav-item item-nav"><a class="nav-link" href="{{route('myappeals')}}"><i class="fas fa-tasks"></i> Başvurularım</a></li>
                     <li class="nav-item item-nav"><a class="nav-link" href="{{route('adverts')}}"><i class="fas fa-th"></i> İlanlar</a></li>
                     <li class="nav-item item-nav"><a class="nav-link" href="#"><i class="far fa-heart"></i> Pusulama Göre İlanlar</a></li>
                     </li>

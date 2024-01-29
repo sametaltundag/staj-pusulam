@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('subdescription')->nullable();
             $table->string('price')->nullable();
             $table->string('city')->nullable();
-            $table->foreignId('employers_id')->constrained();
+            $table->foreignId('users_id')->constrained()->onDelete('cascade');
+            $table->integer('job_id')->constrained()->onDelete('cascade');
             $table->enum('status', ['1', '0'])->default(1);
             $table->timestamps();
         });

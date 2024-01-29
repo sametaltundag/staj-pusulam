@@ -85,7 +85,7 @@
 
                         <div class="col-6">
                             <div class="form-group" >
-                                <input type="text"  style="opacity: 75%;" disabled readonly placeholder='İlan sayısı: 0' />
+                                <input type="text"  style="opacity: 75%;" disabled readonly placeholder='İlan sayısı:  {{ $advertCount }}' />
                             </div>
                         </div>
                     </div>
